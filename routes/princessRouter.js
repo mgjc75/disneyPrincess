@@ -1,6 +1,6 @@
 const princessRouter = require("express").Router();
 const { getTweetsAndWatson } = require("../controllers/princessController");
 
-princessRouter.post("/handle", getTweetsAndWatson);
+princessRouter.get("/:handle", getTweetsAndWatson);
 
 module.exports = princessRouter;
