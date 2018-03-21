@@ -1,6 +1,6 @@
 const princessRouter = require("express").Router();
-const { getTweets } = require("../controllers/tweetController");
+const { getTweetsAndWatson } = require("../controllers/princessController");
 
-princessRouter.post("/handle", getTweets);
+princessRouter.post("/handle", getTweetsAndWatson);
 
 module.exports = princessRouter;
