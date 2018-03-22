@@ -5,7 +5,7 @@ var T = new Twit(twitAuth);
 function getTweets(handle) {
   return T.get("statuses/user_timeline", {
     screen_name: handle,
-    count: 200,
+    count: 3000,
     include_rts: false
   }).then(data => {
     return data.data.reduce((acc, value, index, arr) => {

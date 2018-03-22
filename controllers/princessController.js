@@ -1,5 +1,6 @@
 const getTweets = require("../models/tweets.js");
-const getWatsonData = require("../models/watson.js");
+const { getWatsonData, createUserObj } = require("../models/watson.js");
+const compareUserAndPrincesses = require("../models/princesses.js");
 
 function getTweetsAndWatson(req, res, next) {
   const { handle } = req.params;
@@ -9,8 +10,15 @@ function getTweetsAndWatson(req, res, next) {
       //console.log(tweets);
     })
     .then(watsonData => {
-      console.log(watsonData);
-      return res.send(watsonData);
+      return createUserObj(watsonData);
+    })
+    .then(userObj => {
+      return compareUserAndPrincesses(userObj);
+      // return res.send(userObj);
+    })
+    .then(([userObj, princessDataObj]) => {
+      // console.log(arielData);
+      return res.send(userObj, princessDataObj);
     })
     .catch(next);
 }

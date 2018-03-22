@@ -12,4 +12,11 @@ function getWatsonData(tweets) {
   });
 }
 
-module.exports = getWatsonData;
+function createUserObj(watsonData) {
+  return watsonData.personality.reduce((acc, big5, i) => {
+    acc[big5.name] = big5.percentile.toFixed(2);
+    return acc;
+  }, {});
+}
+
+module.exports = { getWatsonData, createUserObj };
