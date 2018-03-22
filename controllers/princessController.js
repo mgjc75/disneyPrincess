@@ -7,17 +7,14 @@ function getTweetsAndWatson(req, res, next) {
   getTweets(handle)
     .then(tweets => {
       return getWatsonData(tweets);
-      //console.log(tweets);
     })
     .then(watsonData => {
       return createUserObj(watsonData);
     })
     .then(userObj => {
       return compareUserAndPrincesses(userObj);
-      // return res.send(userObj);
     })
     .then(([userObj, princessDataObj]) => {
-      // console.log(arielData);
       return res.send(userObj, princessDataObj);
     })
     .catch(next);
