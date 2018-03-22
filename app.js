@@ -1,13 +1,20 @@
-const app = require("express")();
+const express = require("express");
+const app = express();
+const path = require("path");
 const apiRouter = require("./routes/apiRouter");
 const bodyParser = require("body-parser");
 
-app.use(bodyParser.json());
-
 app.use("/api", apiRouter);
 
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "public")));
+
+// app.get("/", (req, res) => {
+//   res.send("Hi Mark and Tim!");
+// });
+
 app.get("/", (req, res) => {
-  res.send("Hi Mark and Tim!");
+  res.render("index.ejs", {});
 });
 
 app.use("/*", (re, res, next) => next({ status: 404 }));
